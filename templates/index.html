@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PC Expert System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/" class="brand">
+            <span class="brand-icon">PC</span>
+            <span>Expert<span class="accent">System</span></span>
+        </a>
+
+        <span class="nav-label">COMPUTER DIAGNOSTICS</span>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="eyebrow">
+                    INTELLIGENT TROUBLESHOOTING
+                </div>
+
+                <h1>
+                    Diagnose your PC.<br>
+                    <span class="accent">Find the solution.</span>
+                </h1>
+
+                <p class="description">
+                    Identifikasi kemungkinan masalah komputer
+                    berdasarkan gejala yang kamu alami menggunakan
+                    sistem pakar berbasis Forward Chaining.
+                </p>
+
+                <a href="/diagnosis" class="button">
+                    Mulai Diagnosis <span>→</span>
+                </a>
+
+                <div class="hero-note">
+                    ● Berbasis aturan · Forward Chaining
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="computer-icon">⌘</div>
+                <div class="visual-caption">SYSTEM ANALYSIS</div>
+                <div class="visual-status">
+                    <span class="status-dot"></span>
+                    Expert system ready
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <span class="stat-label">KNOWLEDGE BASE</span>
+                <strong>{{ total_rules }}</strong>
+                <span class="stat-description">Aturan diagnosis</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">SYMPTOM INPUTS</span>
+                <strong>{{ total_questions }}</strong>
+                <span class="stat-description">Pertanyaan gejala</span>
+            </div>
+
+            <div class="stat-card">
+                <span class="stat-label">INFERENCE ENGINE</span>
+                <strong class="method">Forward</strong>
+                <span class="stat-description">Data-driven reasoning</span>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <div class="section-heading">
+                <span class="eyebrow">HOW IT WORKS</span>
+                <h2>Tiga langkah menuju diagnosis</h2>
+            </div>
+
+            <div class="steps">
+                <article class="step-card">
+                    <span class="step-number">01</span>
+                    <h3>Identifikasi gejala</h3>
+                    <p>Jawab pertanyaan berdasarkan kondisi komputer.</p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">02</span>
+                    <h3>Analisis sistem</h3>
+                    <p>Mesin inferensi mencocokkan fakta dengan aturan.</p>
+                </article>
+
+                <article class="step-card">
+                    <span class="step-number">03</span>
+                    <h3>Lihat hasil</h3>
+                    <p>Periksa diagnosis dan penjelasan aturan yang aktif.</p>
+                </article>
+            </div>
+        </section>
+
+        <footer>
+            PC Expert System · Rule-Based Computer Troubleshooting
+        </footer>
+    </main>
+</body>
+</html>

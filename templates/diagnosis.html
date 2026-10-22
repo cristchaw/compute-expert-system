@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Diagnosis | PC Expert System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/" class="brand">
+            <span class="brand-icon">PC</span>
+            <span>Expert<span class="accent">System</span></span>
+        </a>
+
+        <a href="/" class="back-link">← Dashboard</a>
+    </nav>
+
+    <main class="container page-container">
+        <div class="page-heading">
+            <span class="eyebrow">SYSTEM DIAGNOSTICS</span>
+            <h1>What's wrong with your PC?</h1>
+
+            <p class="description">
+                Jawab setiap pertanyaan berdasarkan kondisi komputer.
+                Pilih Ya atau Tidak untuk setiap gejala.
+            </p>
+        </div>
+
+        <form action="/diagnosis" method="POST">
+            {% for category, keys in categories.items() %}
+                <section class="question-section">
+                    <div class="category-heading">
+                        <h2>{{ category }}</h2>
+                        <span>{{ keys|length }} pertanyaan</span>
+                    </div>
+
+                    {% for key in keys %}
+                        <div class="question-card">
+                            <div class="question-text">
+                                <span class="question-number">
+                                    {{ loop.index }}
+                                </span>
+
+                                <label for="{{ key }}">
+                                    {{ questions[key] }}
+                                </label>
+                            </div>
+
+                            <div class="answer-options">
+                                <label class="answer-option">
+                                    <input
+                                        type="radio"
+                                        name="{{ key }}"
+                                        value="yes"
+                                        required
+                                    >
+                                    <span>Ya</span>
+                                </label>
+
+                                <label class="answer-option">
+                                    <input
+                                        type="radio"
+                                        name="{{ key }}"
+                                        value="no"
+                                        required
+                                    >
+                                    <span>Tidak</span>
+                                </label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </section>
+            {% endfor %}
+
+            <div class="submit-area">
+                <p>
+                    Pastikan seluruh pertanyaan sudah dijawab.
+                </p>
+
+                <button type="submit" class="button">
+                    Analisis Komputer <span>→</span>
+                </button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

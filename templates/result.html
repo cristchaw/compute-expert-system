@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hasil Diagnosis | PC Expert System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="/" class="brand">
+            <span class="brand-icon">PC</span>
+            <span>Expert<span class="accent">System</span></span>
+        </a>
+
+        <a href="/" class="back-link">← Dashboard</a>
+    </nav>
+
+    <main class="container page-container">
+        <div class="page-heading">
+            <span class="eyebrow">DIAGNOSTIC REPORT</span>
+            <h1>Hasil analisis komputer</h1>
+
+            <p class="description">
+                Berikut hasil yang diperoleh dari aturan sistem pakar.
+            </p>
+        </div>
+
+        <section class="result-panel">
+            <div class="result-header">
+                <span class="result-symbol">✓</span>
+
+                <div>
+                    <span class="eyebrow">ANALYSIS COMPLETE</span>
+                    <h2>
+                        {% if diagnoses %}
+                            Diagnosis ditemukan
+                        {% else %}
+                            Belum ada diagnosis
+                        {% endif %}
+                    </h2>
+                </div>
+            </div>
+
+            {% if diagnoses %}
+                <div class="diagnosis-list">
+                    {% for item in diagnoses %}
+                        <article class="diagnosis-card">
+                            <span class="diagnosis-number">
+                                {{ "%02d"|format(loop.index) }}
+                            </span>
+
+                            <div>
+                                <h3>{{ item }}</h3>
+                                <p>
+                                    Hasil berdasarkan fakta dan aturan
+                                    yang cocok dengan gejala yang dipilih.
+                                </p>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>
+                    Sistem belum menemukan diagnosis berdasarkan
+                    kombinasi gejala yang diberikan. Coba periksa
+                    kembali kondisi komputer atau konsultasikan
+                    dengan teknisi.
+                </p>
+            {% endif %}
+        </section>
+
+        <section class="trace-section">
+            <div class="section-heading">
+                <span class="eyebrow">INFERENCE TRACE</span>
+                <h2>Bagaimana sistem mengambil keputusan?</h2>
+
+                <p class="description">
+                    Aturan yang dijalankan oleh mesin Forward Chaining.
+                </p>
+            </div>
+
+            {% if trace %}
+                <div class="trace-list">
+                    {% for item in trace %}
+                        <article class="trace-card">
+                            <div class="trace-rule">
+                                {{ item.rule_id }}
+                            </div>
+
+                            <div class="trace-content">
+                                <span class="trace-label">IF</span>
+                                <p>
+                                    {{ item.conditions|join(" AND ") }}
+                                </p>
+
+                                <span class="trace-label">THEN</span>
+                                <p class="trace-conclusion">
+                                    {{ item.conclusion }}
+                                </p>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    Tidak ada aturan yang aktif untuk kombinasi gejala ini.
+                </div>
+            {% endif %}
+        </section>
+
+        <div class="submit-area">
+            <a href="/diagnosis" class="button">
+                Diagnosis Ulang <span>↻</span>
+            </a>
+
+            <a href="/" class="secondary-button">
+                Kembali ke Dashboard
+            </a>
+        </div>
+
+        <footer>
+            PC Expert System · Diagnosis berbasis aturan
+        </footer>
+    </main>
+</body>
+</html>
